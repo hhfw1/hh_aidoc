@@ -22,3 +22,6 @@ This script is basically for to be used in the server when there are no ems /doc
    useful changes.
 - Feel free to do whatever you like with this script just don't edit and resell lol! 
 
+Forum : https://forum.cfx.re/t/qb-esx-hh-aid-doctor-ai-doctor-release-free/4768466
+Preview : https://www.youtube.com/watch?v=HdY6m8EZGDQ
+
