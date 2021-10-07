@@ -1,7 +1,6 @@
 local isESX =  GetResourceState('es_extended') == 'started' or GetResourceState('extendedmode') == 'started'
 local isQB =  GetResourceState('qb-core') == 'started'
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+
 
 if isQB then
 	QBCore.Functions.CreateCallback('hhfw:docOnline', function(source, cb)
