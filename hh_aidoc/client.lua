@@ -1,14 +1,6 @@
 local isESX =  GetResourceState('es_extended') == 'started' or GetResourceState('extendedmode') == 'started'
 local isQB =  GetResourceState('qb-core') == 'started'
 
-local QBCore = nil
-Citizen.CreateThread(function()
-    while QBCore == nil do
-        TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
-        Citizen.Wait(200)
-    end
-end)
-
 
 local Active = false
 local test = nil
