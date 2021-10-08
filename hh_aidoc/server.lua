@@ -66,7 +66,7 @@ AddEventHandler('hhfw:charge', function()
 		TriggerEvent("qb-bossmenu:server:addAccountMoney", 'ambulance', Config.Price)
 	elseif isESX then
 		local xPlayer = ESX.GetPlayerFromId(src)
-		if getMoney() >= Config.Price then
+		if xPlayer.getMoney()>= Config.Price then
 			xPlayer.removeMoney(Config.Price)
 		else
 			xPlayer.removeAccountMoney('bank', Config.Price)
