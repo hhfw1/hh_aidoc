@@ -9,14 +9,32 @@ local Act = true
 local spam = true
 
 local isDead = false
+local ESX = nil
+local QBCore = nil
+
+
 
 if isESX then
+	Citizen.CreateThread(function()
+    		while ESX == nil do
+        	   TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+        	   Citizen.Wait(200)
+    		end
+	end)
+	
 	AddEventHandler('playerSpawned', function(spawn)
 		isDead = false
 	end)
 
 	AddEventHandler('esx:onPlayerDeath', function(data)
 		isDead = true
+	end)	
+elseif isQB then 
+	Citizen.CreateThread(function()
+    		while QBCore == nil do
+        	   TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+        	   Citizen.Wait(200)
+    		end
 	end)
 end
 
