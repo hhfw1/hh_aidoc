@@ -3,6 +3,10 @@ local isQB =  GetResourceState('qb-core') == 'started'
 
 
 if isQB then
+	
+	QBCore = nil
+	TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+	
 	QBCore.Functions.CreateCallback('hhfw:docOnline', function(source, cb)
 		local src = source
 		local Ply = QBCore.Functions.GetPlayer(src)
@@ -27,6 +31,10 @@ if isQB then
 		cb(doctor, canpay)
 	end)
 elseif isESX then
+	
+	ESX = nil
+	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+	
 	ESX.RegisterServerCallback('hhfw:docOnline' , function(source, cb)
 		local src = source
 		local Ply = ESX.GetPlayerFromId(src)
