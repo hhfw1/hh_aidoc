@@ -10,7 +10,6 @@ end)
 local Active = false
 local test = nil
 local test1 = nil
-local Act = true
 local spam = true
 
 local isDead = false
@@ -63,7 +62,7 @@ function SpawnVehicle(x, y, z)
 	while not HasModelLoaded('s_m_m_doctor_01') do
 		Wait(1)
 	end
-	local spawnRadius = 100                                                    
+	local spawnRadius = 40                                                    
     local found, spawnPos, spawnHeading = GetClosestVehicleNodeWithHeading(loc.x + math.random(-spawnRadius, spawnRadius), loc.y + math.random(-spawnRadius, spawnRadius), loc.z, 0, 3, 0)
 
 	if not DoesEntityExist(vehhash) then
@@ -87,32 +86,31 @@ function SpawnVehicle(x, y, z)
 		test = mechVeh
 		test1 = mechPed
 		Active = true
-
-		Citizen.CreateThread(function()
-			while true do
-			  Citizen.Wait(200)
-				if Active or Act then
-					local loc = GetEntityCoords(GetPlayerPed(-1))
-					local lc = GetEntityCoords(test)
-					local ld = GetEntityCoords(test1)
-					local dist = Vdist(loc.x, loc.y, loc.z, lc.x, lc.y, lc.z)
-					local dist1 = Vdist(loc.x, loc.y, loc.z, ld.x, ld.y, ld.z)
-					if dist <= 20 then
-						if Active then
-							TaskGoToCoordAnyMeans(test1, loc.x, loc.y, loc.z, 1.0, 0, 0, 786603, 0xbf800000)
-						end
-						if dist1 <= 1 then 
-							Active = false
-							Act = false
-							ClearPedTasksImmediately(test1)
-							DoctorNPC()
-						end
-					end
-				end
-			end
-		end)
     end
 end
+
+Citizen.CreateThread(function()
+    while true do
+      Citizen.Wait(200)
+        if Active then
+            local loc = GetEntityCoords(GetPlayerPed(-1))
+			local lc = GetEntityCoords(test)
+			local ld = GetEntityCoords(test1)
+            local dist = Vdist(loc.x, loc.y, loc.z, lc.x, lc.y, lc.z)
+			local dist1 = Vdist(loc.x, loc.y, loc.z, ld.x, ld.y, ld.z)
+            if dist <= 10 then
+				if Active then
+					TaskGoToCoordAnyMeans(test1, loc.x, loc.y, loc.z, 1.0, 0, 0, 786603, 0xbf800000)
+				end
+				if dist1 <= 1 then 
+					Active = false
+					ClearPedTasksImmediately(test1)
+					DoctorNPC()
+				end
+            end
+        end
+    end
+end)
 
 
 function DoctorNPC()
