@@ -26,26 +26,30 @@ end)
 
 
 
-RegisterCommand("help", function(source, args, raw)
-	if isDead and spam then
-		ESX.TriggerServerCallback('hhfw:docOnline', function(EMSOnline, hasEnoughMoney)
-
-			if EMSOnline <= Config.Doctor and hasEnoughMoney and spam then
-				SpawnVehicle(GetEntityCoords(PlayerPedId()))
-				TriggerServerEvent('hhfw:charge')
-				Notify("Medic is arriving")
-			else
-				if EMSOnline > Config.Doctor then
-					Notify("There is too many medics online", "error")
-				elseif not hasEnoughMoney then
-					Notify("Not Enough Money")
-				else
-					Notify("Wait Paramadic is on its Way")
-				end	
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(0)
+		if isDead and spam then
+			if IsControlJustPressed(1, 47) then
+				ESX.TriggerServerCallback('hhfw:docOnline', function(EMSOnline, hasEnoughMoney)
+					if EMSOnline <= Config.Doctor and hasEnoughMoney and spam then
+						SpawnVehicle(GetEntityCoords(PlayerPedId()))
+						TriggerServerEvent('hhfw:charge')
+						ShowAdvNotification("CHAR_PA_FEMALE", "Doctor", "", "There is no EMS in the city don't worry i will send my P.A for you!")
+						--Notify("Medic is arriving")
+					else
+						if EMSOnline > Config.Doctor then
+							exports['CRP_Notify']:Alert("Doctor", "We got your signal, please wait", 5000, 'bell')
+							--Notify("There is too many medics online", "error")
+						elseif not hasEnoughMoney then
+							Notify("Not Enough Money")
+						else
+							Notify("Wait Paramadic is on its Way")
+						end	
+					end
+				end)
 			end
-		end)
-	else
-		Notify("This can only be used when dead")
+		end
 	end
 end)
 
