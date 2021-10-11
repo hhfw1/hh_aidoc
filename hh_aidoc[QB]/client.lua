@@ -10,7 +10,6 @@ end)
 local Active = false
 local test = nil
 local test1 = nil
-local Act = true
 local spam = true
 
  
@@ -82,7 +81,7 @@ end
 Citizen.CreateThread(function()
     while true do
       Citizen.Wait(200)
-        if Active or Act then
+        if Active then
             local loc = GetEntityCoords(GetPlayerPed(-1))
 			local lc = GetEntityCoords(test)
 			local ld = GetEntityCoords(test1)
@@ -94,7 +93,6 @@ Citizen.CreateThread(function()
 				end
 				if dist1 <= 1 then 
 					Active = false
-					Act = false
 					ClearPedTasksImmediately(test1)
 					DoctorNPC()
 				end
