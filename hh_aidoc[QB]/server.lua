@@ -1,8 +1,3 @@
-
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
-
-
 QBCore.Functions.CreateCallback('hhfw:docOnline', function(source, cb)
 	local src = source
 	local Ply = QBCore.Functions.GetPlayer(src)
