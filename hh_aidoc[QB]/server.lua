@@ -1,3 +1,5 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
 QBCore.Functions.CreateCallback('hhfw:docOnline', function(source, cb)
 	local src = source
 	local Ply = QBCore.Functions.GetPlayer(src)
