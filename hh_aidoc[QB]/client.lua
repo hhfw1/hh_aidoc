@@ -108,7 +108,7 @@ function DoctorNPC()
 	}, {}, {}, {}, function() -- Done
 		ClearPedTasks(test1)
 		Citizen.Wait(500)
-		TriggerServerEvent("hospital:server:RevivePlayer",  GetPlayerServerId(PlayerId()))
+        	TriggerEvent("hospital:client:Revive")
 		StopScreenEffect('DeathFailOut')	
 		Notify("Your treatment is done, you were charged: "..Config.Price, "success")
 		RemovePedElegantly(test1)
