@@ -115,6 +115,8 @@ function DoctorNPC()
 		Notify("Your treatment is done, you were charged: "..Config.Price, "success")
 		RemovePedElegantly(test1)
 		DeleteEntity(test)
+		Wait(5000)
+		DeleteEntity(test1)
 		spam = true
 	end)
 end
