@@ -114,9 +114,9 @@ function DoctorNPC()
 		StopScreenEffect('DeathFailOut')	
 		Notify("Your treatment is done, you were charged: "..Config.Price, "success")
 		RemovePedElegantly(test1)
+		Wait(30000) --5000
 		DeleteEntity(test)
-		Wait(5000)
-		DeleteEntity(test1)
+		--DeleteEntity(test1)
 		spam = true
 	end)
 end
