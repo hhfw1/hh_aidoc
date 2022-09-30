@@ -120,9 +120,24 @@ function DoctorNPC()
 	end
 
 	TaskPlayAnim(test1, "mini@cpr@char_a@cpr_str","cpr_pumpchest",1.0, 1.0, -1, 9, 1.0, 0, 0, 0)
-	exports['progressBars']:startUI(Config.ReviveTime, "The doctor is giving you medical aid")
-	Wait(Config.ReviveTime)
-	ClearPedTasks(test1)
+	--exports['progressBars']:startUI(Config.ReviveTime, "The doctor is giving you medical aid")
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "ai_doc",
+        duration = Config.ReviveTime,
+        label = "The doctor is giving you medical aid",
+        useWhileDead = true,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {},
+        prop = {}
+    }, function(status)
+        if not status then
+        ClearPedTasks(test1)
 	Citizen.Wait(500)
 	TriggerEvent('esx_ambulancejob:revive')
 	StopScreenEffect('DeathFailOut')	
@@ -130,6 +145,8 @@ function DoctorNPC()
 	RemovePedElegantly(test1)
 	DeleteEntity(test)
 	spam = true
+        end
+    end)	
 end
 
 
