@@ -4,6 +4,7 @@ local Active = false
 local test = nil
 local test1 = nil
 local spam = true
+local QBCore = exports['qb-core']:GetCoreObject()
 
  
 
