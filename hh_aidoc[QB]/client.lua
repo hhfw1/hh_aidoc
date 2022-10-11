@@ -54,13 +54,14 @@ function SpawnVehicle(x, y, z)
 		SetVehicleNumberPlateText(mechVeh, "HHFW")
 		SetEntityAsMissionEntity(mechVeh, true, true)
 		SetVehicleEngineOn(mechVeh, true, true, false)
-        
+        	SetVehicleSiren(mechVeh, true) -- any EMS cars comes with siren. 
+
         mechPed = CreatePedInsideVehicle(mechVeh, 26, GetHashKey('s_m_m_doctor_01'), -1, true, false)              	
         
         mechBlip = AddBlipForEntity(mechVeh)                                                        	
         SetBlipFlashes(mechBlip, true)  
         SetBlipColour(mechBlip, 5)
-
+	
 
 		PlaySoundFrontend(-1, "Text_Arrive_Tone", "Phone_SoundSet_Default", 1)
 		Wait(2000)
