@@ -34,13 +34,13 @@ end)
 
 function SpawnVehicle(x, y, z)  
 	spam = false
-	local vehhash = GetHashKey("ambulance")                                                     
+	local vehhash = GetHashKey("ambulance")   -- "carmodelnamehere"     you can add any car u would like to be use of as EMS                                              
 	local loc = GetEntityCoords(PlayerPedId())
 	RequestModel(vehhash)
 	while not HasModelLoaded(vehhash) do
 		Wait(1)
 	end
-	RequestModel('s_m_m_doctor_01')
+	RequestModel('s_m_m_doctor_01')  -- request model of NPC
 	while not HasModelLoaded('s_m_m_doctor_01') do
 		Wait(1)
 	end
@@ -51,7 +51,7 @@ function SpawnVehicle(x, y, z)
         mechVeh = CreateVehicle(vehhash, spawnPos, spawnHeading, true, false)                        
         ClearAreaOfVehicles(GetEntityCoords(mechVeh), 5000, false, false, false, false, false);  
         SetVehicleOnGroundProperly(mechVeh)
-		SetVehicleNumberPlateText(mechVeh, "HHFW")
+		SetVehicleNumberPlateText(mechVeh, "HHFW")  -- change the name to have custsom plates on EMS car. "carplatenamehere"
 		SetEntityAsMissionEntity(mechVeh, true, true)
 		SetVehicleEngineOn(mechVeh, true, true, false)
         
