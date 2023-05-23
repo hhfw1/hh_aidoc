@@ -34,7 +34,7 @@ end)
 
 function SpawnVehicle(x, y, z)  
 	spam = false
-	local vehhash = GetHashKey("ffpiu")       --- custom gta 5 mod https://www.gta5-mods.com/vehicles/2016-ford-explorer-fpiu-qrv-saems-els                                              
+	local vehhash = GetHashKey("polschafter3")       --- custom gta 5 mod https://www.gta5-mods.com/vehicles/2016-ford-explorer-fpiu-qrv-saems-els                                              
 	local loc = GetEntityCoords(PlayerPedId())
 	RequestModel(vehhash)
 	while not HasModelLoaded(vehhash) do
@@ -44,17 +44,18 @@ function SpawnVehicle(x, y, z)
 	while not HasModelLoaded('s_m_m_doctor_01') do
 		Wait(1)
 	end
-	local spawnRadius = 140                                                    
+	local spawnRadius = 300                                                    
     local found, spawnPos, spawnHeading = GetClosestVehicleNodeWithHeading(loc.x + math.random(-spawnRadius, spawnRadius), loc.y + math.random(-spawnRadius, spawnRadius), loc.z, 0, 3, 0)
 
 	if not DoesEntityExist(vehhash) then
         mechVeh = CreateVehicle(vehhash, spawnPos, spawnHeading, true, false)                        
         ClearAreaOfVehicles(GetEntityCoords(mechVeh), 5000, false, false, false, false, false);  
         SetVehicleOnGroundProperly(mechVeh)
-		SetVehicleNumberPlateText(mechVeh, "HHFW")
+		SetVehicleNumberPlateText(mechVeh, "EMS")
 		SetEntityAsMissionEntity(mechVeh, true, true)
 		SetVehicleEngineOn(mechVeh, true, true, false)
-        
+		SetVehicleSiren(mechVeh, true)
+				
         mechPed = CreatePedInsideVehicle(mechVeh, 26, GetHashKey('s_m_m_doctor_01'), -1, true, false)              	
         
         mechBlip = AddBlipForEntity(mechVeh)                                                        	
