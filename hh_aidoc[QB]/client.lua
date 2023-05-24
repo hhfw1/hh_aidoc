@@ -34,7 +34,7 @@ end)
 
 function SpawnVehicle(x, y, z)  
 	spam = false
-	local vehhash = GetHashKey("polschafter3")       --- custom gta 5 mod https://www.gta5-mods.com/vehicles/2016-ford-explorer-fpiu-qrv-saems-els                                              
+	local vehhash = GetHashKey("jeep")       --- custom gta 5 mod https://www.gta5-mods.com/vehicles/2016-ford-explorer-fpiu-qrv-saems-els                                              
 	local loc = GetEntityCoords(PlayerPedId())
 	RequestModel(vehhash)
 	while not HasModelLoaded(vehhash) do
