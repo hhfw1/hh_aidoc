@@ -5,8 +5,6 @@ local test = nil
 local test1 = nil
 local spam = true
 
- 
-
 
 RegisterCommand("help", function(source, args, raw)
 	if (QBCore.Functions.GetPlayerData().metadata["isdead"]) or (QBCore.Functions.GetPlayerData().metadata["inlaststand"]) and spam then
@@ -29,7 +27,6 @@ RegisterCommand("help", function(source, args, raw)
 		Notify("This can only be used when dead", "error")
 	end
 end)
-
 
 
 function SpawnVehicle(x, y, z)  
