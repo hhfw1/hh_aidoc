@@ -5,31 +5,91 @@ local test = nil
 local test1 = nil
 local spam = true
 
- 
-
-
-RegisterCommand("help", function(source, args, raw)
-	if (QBCore.Functions.GetPlayerData().metadata["isdead"]) or (QBCore.Functions.GetPlayerData().metadata["inlaststand"]) and spam then
-		QBCore.Functions.TriggerCallback('hhfw:docOnline', function(EMSOnline, hasEnoughMoney)
-			if EMSOnline <= Config.Doctor and hasEnoughMoney and spam then
-				SpawnVehicle(GetEntityCoords(PlayerPedId()))
-				TriggerServerEvent('hhfw:charge')
-				Notify("Medic is arriving")
-			else
-				if EMSOnline > Config.Doctor then
-					Notify("There is too many medics online", "error")
-				elseif not hasEnoughMoney then
-					Notify("Not Enough Money", "error")
-				else
-					Notify("Wait Paramadic is on its Way", "primary")
-				end	
-			end
-		end)
-	else
-		Notify("This can only be used when dead", "error")
-	end
+ RegisterNetEvent('medic:spawn', function()
+    if Config.scene == "true" then
+        scenetrue()
+    elseif Config.scene == "false" then
+        scenefalse()
+    elseif Config.scene == "ron" then
+        ronedit()
+    end
 end)
 
+
+scenefalse = function ()
+	RegisterCommand("help", function(source, args, raw)
+		if (QBCore.Functions.GetPlayerData().metadata["isdead"]) or (QBCore.Functions.GetPlayerData().metadata["inlaststand"]) and spam then
+			QBCore.Functions.TriggerCallback('hhfw:docOnline', function(EMSOnline, hasEnoughMoney)
+				if EMSOnline <= Config.Doctor and hasEnoughMoney and spam then
+					SpawnVehicle(GetEntityCoords(PlayerPedId()))
+					TriggerServerEvent('hhfw:charge')
+					Notify("Medic is arriving")
+				else
+					if EMSOnline > Config.Doctor then
+						Notify("There is too many medics online", "error")
+					elseif not hasEnoughMoney then
+						Notify("Not Enough Money", "error")
+					else
+						Notify("Wait Paramadic is on its Way", "primary")
+					end	
+				end
+			end)
+		else
+			Notify("This can only be used when dead", "error")
+		end
+	end)
+end
+
+scenetrue = function ()
+	Citizen.Wait(120000)
+	RegisterCommand("help", function(source, args, raw)
+		if (QBCore.Functions.GetPlayerData().metadata["isdead"]) or (QBCore.Functions.GetPlayerData().metadata["inlaststand"]) and spam then
+			QBCore.Functions.TriggerCallback('hhfw:docOnline', function(EMSOnline, hasEnoughMoney)
+				if EMSOnline <= Config.Doctor and hasEnoughMoney and spam then
+					SpawnVehicle(GetEntityCoords(PlayerPedId()))
+					TriggerServerEvent('hhfw:charge')
+					Notify("Medic is arriving")
+				else
+					if EMSOnline > Config.Doctor then
+						Notify("There is too many medics online", "error")
+					elseif not hasEnoughMoney then
+						Notify("Not Enough Money", "error")
+					else
+						Notify("Wait Paramadic is on its Way", "primary")
+					end	
+				end
+			end)
+		else
+			Notify("This can only be used when dead", "error")
+		end
+	end)
+end
+
+ronedit = function 
+   Notify("Contacting EMS", "primary")
+	Citizen.wait(1500)
+	RegisterCommand("help", function(source, args, raw)
+		if (QBCore.Functions.GetPlayerData().metadata["isdead"]) or (QBCore.Functions.GetPlayerData().metadata["inlaststand"]) and spam then
+			QBCore.Functions.TriggerCallback('hhfw:docOnline', function(EMSOnline, hasEnoughMoney)
+				if EMSOnline <= Config.Doctor and hasEnoughMoney and spam then
+					SpawnVehicle(GetEntityCoords(PlayerPedId()))
+				--If using ron edit put this event on line 175! "TriggerServerEvent('hhfw:charge')"
+					Notify("Medic is arriving")
+				else
+					if EMSOnline > Config.Doctor then
+						Notify("There is too many medics online", "error")
+					elseif not hasEnoughMoney then
+						Notify("Not Enough Money", "error")
+					else
+						Notify("Wait Paramadic is on its Way", "primary")
+					end	
+				end
+			end)
+		else
+			Notify("This can only be used when dead", "error")
+		end
+	end)
+end
 
 
 function SpawnVehicle(x, y, z)  
